@@ -1,6 +1,7 @@
 #! /usr/bin/python
 
 import socket
+from termcolor import colored
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # TCP PACKAGE
 
@@ -14,9 +15,9 @@ except ValueError:
 
 def portscanner(port):
     if sock.connect_ex((host, port)):
-        print("Port %d is closed" %(port))
+        print(colored("Port %d is closed" %(port), 'red'))
     else:
-        print("Port %d is open" %(port))
+        print(colored("Port %d is open" %(port), 'green'))
 
 for port in range(100):
     portscanner(port)
