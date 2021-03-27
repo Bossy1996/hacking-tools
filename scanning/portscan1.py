@@ -3,14 +3,14 @@
 import socket
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # TCP PACKAGE
+
+# if after 2 sec it doen't give a response the port is closed
+socket.setdefaulttimeout(2)
+
 try:   
     host = str(input("[*] Enter the host to scan: "))
 except ValueError:
     print("Value Error!")
-try:
-    port = int(input("[*] Enter the port to scan: "))
-except ValueError:
-    print("Value Error, it must be an integer!")
 
 def portscanner(port):
     if sock.connect_ex((host, port)):
@@ -18,5 +18,6 @@ def portscanner(port):
     else:
         print("Port %d is open" %(port))
 
-portscanner(port)
+for port in range(100):
+    portscanner(port)
 
